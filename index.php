@@ -94,7 +94,7 @@
 
 
 	/*
-4. Now uncomment the ProjectManager class. Create an instance of ProjectManager (specifying the builder and joiner as arguments when you call the constructor function). Test this works by calling the buildHouse and payContractors methods
+4. Now uncomment the ProjectManager class. Create an instance of ProjectManager (specifying the builder and joiner as arguments when you call the constructor function). Test this works by calling the buildHouse() and payContractors() methods
 */
 
 	// $projectManager = new ProjectManager($builder, $joiner);
@@ -142,7 +142,7 @@ Test this works by uncommenting the following code
 	/*
 9. Add another child class of Contractor, name it Plumber. The work() method should return a string such as 'plumber has fitted the sink'. Modify the above code so that a plumber is also added to the project. 
 
-Notice how we can  add a plumber and we don't have to make any changes to ProjectManager class.
+Notice how we can add a plumber and we don't have to make any changes to ProjectManager class.
 */
 
 
