@@ -12,6 +12,7 @@
 // {
 //     private $builder;
 //     private $joiner;
+//     private $electrician;
 //     function __construct($builder, $joiner, $electrician)
 //     {
 //         $this->builder = $builder;
@@ -97,7 +98,7 @@ echo "<p>{$builder->buildWalls()}</p>"; //Jane Smith has built the walls.
 
 
 /*
-4. Now uncomment the ProjectManager class. Create an instance of ProjectManager (specifying the builder and joiner as arguments when you call the constructor function). Test this works by calling the buildHouse() and payContractors() methods
+6. Now uncomment the ProjectManager class. Uncomment the following lines of code that create an instance of ProjectManager and calls the buildHouse() and payContractors() methods. Check this works.
 */
 
 // $projectManager = new ProjectManager($builder, $joiner, $electrician);
@@ -106,7 +107,7 @@ echo "<p>{$builder->buildWalls()}</p>"; //Jane Smith has built the walls.
 
 
 /*
-5. One problem is that everytime we create a new kind of Contractor we have to make changes to the ProjectManager class (by adding extra properties, parameters etc.). It would be nice if we could add new types of Contractor without changing the ProjectManager class. Have a go at the following:
+7. One problem is that everytime we create a new kind of Contractor we have to make changes to the ProjectManager class (by adding extra properties, parameters etc.). It would be nice if we could add new types of Contractor without changing the ProjectManager class. Have a go at the following:
 Remove the $builder, $joiner and $electrician properties from the ProjectManager class.
 Replace them with a single $contractors property.
 In the constructor function set $contractors to be an empty array i.e. $contractors = [];
@@ -137,7 +138,7 @@ Test this works by uncommenting the following code
 // $projectManager->payContractors();
 
 /*
-6. Create another child class of Contractor, name it Plumber. The work() method should return a string such as 'plumber has fitted the sink'. Modify the above code so that a plumber is also added to the project. 
+8. Create another child class of Contractor, name it Plumber. The work() method should return a string such as 'plumber has fitted the sink'. Modify the above code so that a plumber is also added to the project. 
 
 Notice how we can add a plumber and we don't have to make any changes to ProjectManager class.
 */
