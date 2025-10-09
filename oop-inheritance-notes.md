@@ -85,7 +85,7 @@ class Dog extends Animal
 {
     function fetch($item)
     {
-        return "{$this->name} has picked up the {$item}";
+        return "{$this->name} has picked up the {$item}.";
     }
 }
 $myAnimal = new Animal("Dave");
@@ -131,7 +131,7 @@ The Abstract Animal class features an abstract method (_talk()_). Abstract metho
 - In this case it says all child classes must have a _talk()_ method (it will be up to the child class to define this for itself).
 - But it must have one or we will get an error!
 
-Both _Cat_ and _Dog_ have to implement a _talk_ method because they inherit from Animal.
+Both _Cat_ and _Dog_ have to implement a _talk()_ method because they inherit from Animal.
 
 ```php
 class Dog extends Animal{
@@ -175,7 +175,7 @@ echo "<p>{$myDog->talk()}</p>"; // Fido says woof
 ### Polymorphism
 
 - Using Abstract classes and methods we get polymorphism.
-- Polymorphism allows objects of different types to respond to method calls of the same name (in this case _talk_).
+- Polymorphism allows objects of different types to respond to method calls of the same name (in this case _talk()_).
 - This idea may not seem very important but it makes our code flexible. We can add new types of Animal (e.g. a Snake) and the code will still work. If Snake is an Animal I know it will have to implement a talk() method.
 
 ```php
@@ -211,7 +211,7 @@ interface CanBeStroked{
 class Dog extends Animal implements CanBeStroked{
     function fetch($item)
     {
-        return "{$this->name} has picked up the {$item}";
+        return "{$this->name} has picked up the {$item}.";
     }
     public function talk()
     {
@@ -219,7 +219,7 @@ class Dog extends Animal implements CanBeStroked{
     }
     public function stroke() //the Dog class implements CanBeStroked so has to feature a stroke() method
     {
-        return "{$this->name} is wagging his tail";
+        return "{$this->name} is wagging his tail.";
     }
 }
 
