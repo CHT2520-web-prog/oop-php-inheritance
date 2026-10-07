@@ -86,7 +86,7 @@ We can have lots of other classes that also inherit from Animal e.g. `Dog`. Ever
 ```php
 class Dog extends Animal
 {
-    function fetch($item):string
+    function fetch(string $item):string
     {
         return "{$this->name} has picked up the {$item}.";
     }
@@ -139,7 +139,7 @@ Both `Cat` and `Dog` have to implement a `talk()` method because they inherit fr
 
 ```php
 class Dog extends Animal{
-    public function fetch($item):string
+    public function fetch(string $item):string
     {
         return "{$this->name} has picked up the {$item}";
     }

@@ -2,7 +2,7 @@
 abstract class BaseController
 {
 
-	protected function loadView($view, $data = [])
+	protected function loadView($view, $data = []):void
 	{
 		//The extract() function creates a variable for each key in an array e.g. 
 		//$arr=["msg"=>"hello","active"=>true];
