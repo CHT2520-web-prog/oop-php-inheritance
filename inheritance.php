@@ -8,57 +8,104 @@
 <body>
 <?php
 // Original ProjectManager class
-class ProjectManager
-{
-    private Builder $builder;
-    private Joiner $joiner;
-    function __construct(Builder $builder, Joiner $joiner)
-    {
-        $this->builder = $builder;
-        $this->joiner = $joiner;
-    }
-    public function buildHouse():void
-    {
-        echo "<p>{$this->builder->work()}</p>";
-        echo "<p>{$this->joiner->work()}</p>";
-    }
-    public function payContractors():void
-    {
-        echo "<p>{$this->builder->pay()}</p>";
-        echo "<p>{$this->joiner->pay()}</p>";
-    }
-}
-
-// Update ProjectManager class
 // class ProjectManager
 // {
-//     private array $contractors;
-//     function __construct()
+//     private Builder $builder;
+//     private Joiner $joiner;
+//     function __construct(Builder $builder, Joiner $joiner)
 //     {
-//         $this->contractors = [];
+//         $this->builder = $builder;
+//         $this->joiner = $joiner;
 //     }
-//     public function hireContractor(Contractor $contractor):void{
-//         $this->contractors[] = $contractor; 
-//     }
-
 //     public function buildHouse():void
 //     {
-//         foreach($this->contractors as $contractor){
-//             echo "<p>{$contractor->work()}</p>";
-//         }
+//         echo "<p>{$this->builder->work()}</p>";
+//         echo "<p>{$this->joiner->work()}</p>";
 //     }
 //     public function payContractors():void
 //     {
-//         foreach($this->contractors as $contractor){
-//             echo "<p>{$contractor->work()}</p>";
-//         }
+//         echo "<p>{$this->builder->pay()}</p>";
+//         echo "<p>{$this->joiner->pay()}</p>";
 //     }
 // }
 
+// Update ProjectManager class
+class ProjectManager
+{
+    private array $contractors;
+    function __construct()
+    {
+        $this->contractors = [];
+    }
+    public function hireContractor(Contractor $contractor):void{
+        $this->contractors[] = $contractor; 
+    }
+
+    public function buildHouse():void
+    {
+        foreach($this->contractors as $contractor){
+            echo "<p>{$contractor->work()}</p>";
+        }
+    }
+    public function payContractors():void
+    {
+        foreach($this->contractors as $contractor){
+            echo "<p>{$contractor->work()}</p>";
+        }
+    }
+}
+
 //Abstract Contractor class
-// abstract class Contractor{
-//  protected string $firstName;
-// 	protected string $lastName;
+abstract class Contractor{
+ protected string $firstName;
+	protected string $lastName;
+	function __construct(string $firstName, string $lastName)
+	{
+		$this->firstName = $firstName;
+		$this->lastName = $lastName;
+	}
+	public function getFullName():string
+	{
+		return "{$this->firstName} {$this->lastName}";
+	}
+	abstract public function work():string;
+	
+	public function pay():string
+	{
+		return "{$this->getFullName()} just got paid.";
+	}
+}
+
+// Child classes
+class Builder extends Contractor{
+    public function work():string
+	{
+		return "{$this->getFullName()} has built some walls.";
+	}
+}
+class Joiner extends Contractor{
+    public function work():string
+	{
+		return "{$this->getFullName()} has made some stairs.";
+	}
+}
+class Electrician extends Contractor{
+    public function work():string
+	{
+		return "{$this->getFullName()} has built fitted some lights.";
+	}
+}
+class Plumber extends Contractor{
+    public function work():string
+	{
+		return "{$this->getFullName()} has fitted a sink.";
+	}
+}
+
+// class Builder
+// {
+// 	private string $firstName;
+// 	private string $lastName;
 // 	function __construct(string $firstName, string $lastName)
 // 	{
 // 		$this->firstName = $firstName;
@@ -68,89 +115,45 @@ class ProjectManager
 // 	{
 // 		return "{$this->firstName} {$this->lastName}";
 // 	}
-// 	abstract public function work():string;
-	
+// 	public function work():string
+// 	{
+// 		return "{$this->getFullName()} has built some walls.";
+// 	}
 // 	public function pay():string
 // 	{
 // 		return "{$this->getFullName()} just got paid.";
 // 	}
 // }
 
-// Child classes
-// class Builder extends Contractor{
-//     public function work():string
+// class Joiner
+// {
+// 	private string $firstName;
+// 	private string $lastName;
+// 	function __construct(string $firstName, string $lastName)
 // 	{
-// 		return "{$this->getFullName()} has built some walls.";
+// 		$this->firstName = $firstName;
+// 		$this->lastName = $lastName;
 // 	}
-// }
-// class Joiner extends Contractor{
-//     public function work():string
+// 	public function getFullName():string
+// 	{
+// 		return "{$this->firstName} {$this->lastName}";
+// 	}
+// 	public function work():string
 // 	{
 // 		return "{$this->getFullName()} has made some stairs.";
 // 	}
-// }
-// class Electrician extends Contractor{
-//     public function work():string
+// 	public function pay():string
 // 	{
-// 		return "{$this->getFullName()} has built fitted some lights.";
+// 		return "{$this->getFullName()} just got paid.";
 // 	}
 // }
-// class Plumber extends Contractor{
-//     public function work():string
-// 	{
-// 		return "{$this->getFullName()} has fitted a sink.";
-// 	}
-// }
-
-class Builder
-{
-	private string $firstName;
-	private string $lastName;
-	function __construct(string $firstName, string $lastName)
-	{
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-	}
-	public function getFullName():string
-	{
-		return "{$this->firstName} {$this->lastName}";
-	}
-	public function work():string
-	{
-		return "{$this->getFullName()} has built some walls.";
-	}
-	public function pay():string
-	{
-		return "{$this->getFullName()} just got paid.";
-	}
-}
-
-class Joiner
-{
-	private string $firstName;
-	private string $lastName;
-	function __construct(string $firstName, string $lastName)
-	{
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-	}
-	public function getFullName():string
-	{
-		return "{$this->firstName} {$this->lastName}";
-	}
-	public function work():string
-	{
-		return "{$this->getFullName()} has made some stairs.";
-	}
-	public function pay():string
-	{
-		return "{$this->getFullName()} just got paid.";
-	}
-}
 
 
 $builder = new Builder("Jane", "Smith");
 echo "<p>{$builder->work()}</p>"; //Jane Smith has built the walls.
+
+$joiner = new Joiner("Imran", "Iqbal");
+echo "<p>{$joiner->work()}</p>"; //Imran Iqbal has made some stairs.
 
 /*
 1. Open this page in a browser. You should get the message 'Jane Smith has built the walls'. Add some more code that will create an instance of the joiner class and call the work() method of this object. 
@@ -164,9 +167,9 @@ echo "<p>{$builder->work()}</p>"; //Jane Smith has built the walls.
 3. Create another class, call this class Electrician. It will need to inherit from the Contractor class. The work() method should return a string stating the electrician has fitted the lights. Uncomment the following code to check this works.
 */
 
-// $electrician = new Electrician("Carla", "Green");
-// echo "<p>{$electrician->work()}</p>"; // Carla Green has fitted the lights
-// echo "<p>{$electrician->pay()}</p>";
+$electrician = new Electrician("Carla", "Green");
+echo "<p>{$electrician->work()}</p>"; // Carla Green has fitted the lights
+echo "<p>{$electrician->pay()}</p>";
 
 
 /*
@@ -206,12 +209,13 @@ Test this works by uncommenting the following code
 $builder = new Builder("Jane","Smith");
 $joiner = new Joiner("Imran","Iqbal");
 $electrician = new Electrician("Carla","Green");
-// $plumber = new Plumber("Anna","Kowalski");
+$plumber = new Plumber("Anna","Kowalski");
+ 
 $projectManager = new ProjectManager();
 $projectManager->hireContractor($builder);
 $projectManager->hireContractor($joiner);
 $projectManager->hireContractor($electrician);
-// $projectManager->hireContractor($plumber);
+$projectManager->hireContractor($plumber);
 $projectManager->buildHouse();
 $projectManager->payContractors();
 
