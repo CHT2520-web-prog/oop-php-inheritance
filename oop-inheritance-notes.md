@@ -19,16 +19,17 @@ We say the 99 recipe _extends_ the basic ice-cream recipe. This is the principle
 
 ## A simple example
 
-Here's an Animal class (very similar to the Dog class we looked at previously)
+Here's an Animal class.
 
 ```php
 class Animal {
-    protected $name;
-
-    function __construct($name){
+    protected string $name;
+    function __construct(string $name)
+    {
          $this->name = $name;
     }
-    public function sleep(){
+    public function sleep():string
+    {
         return "{$this->name} is sleeping.";
     }
 
@@ -47,18 +48,20 @@ $myCat = new Cat("Mackeral");
 echo "<p>{$myCat->sleep()}</p>"; // Displays Mackeral is sleeping.
 ```
 
-- _Cat_ extends _Animal_.
-- It inherits all of the Animal class’s properties and methods e.g. I can call the _sleep()_ method on a Cat object.
-- Note the use of the _protected_ access modifier for the _name_ property in the Animal class. This means the property can be accessed by child classes i.e. Cat but isn't publicly accessible.
+- `Cat` extends `Animal`.
+- It inherits all of the `Animal` class's properties and methods e.g. I can call the `sleep()` method on a `Cat` object.
+- Note the use of the `protected` access modifier for the `name` property in the Animal class. This means the property can be accessed by child classes i.e. `Cat` but isn't publicly accessible.
 
-- Using Animal as a starting point, we can add methods and properties to Cat
+- Using `Animal` as a starting point, we can add methods and properties to `Cat`.
 
 ```php
 class Cat extends Animal{
-     public function scratch(){
+    public function scratch():string
+    {
         return "{$this->name} scratched";
     }
 }
+
 $myCat = new Cat("Mackeral");
 echo "<p>{$myCat->sleep()}</p>"; // Displays Mackeral is sleeping.
 echo "<p>{$myCat->scratch()}</p>"; // Displays Mackeral scratched.
@@ -66,24 +69,24 @@ echo "<p>{$myCat->scratch()}</p>"; // Displays Mackeral scratched.
 
 ## Terminology
 
-- The extended class (in this case Animal) is known as
+- The extended class (in this case `Animal`) is known as
   - The base class
   - The superclass
   - The extended class
   - The parent class
-- The class that does the extending (in this case Cat) is known as
+- The class that does the extending (in this case `Cat`) is known as
   - The derived class
   - The subclass
   - The child class
 
 ## More classes
 
-We can have lots of other classes that also inherit from Animal e.g. Dog. Every time we create a subclass we already have a starting point.
+We can have lots of other classes that also inherit from Animal e.g. `Dog`. Every time we create a subclass we already have a starting point.
 
 ```php
 class Dog extends Animal
 {
-    function fetch($item)
+    function fetch(string $item):string
     {
         return "{$this->name} has picked up the {$item}.";
     }
@@ -101,7 +104,7 @@ echo "<p>{$myDog->fetch("ball")}</p>"; // Displays Fido has picked up the ball.
 
 ## Abstract classes
 
-Often we want the parent class to simply be a template for creating other classes. E.g. in my application I don’t want any _Animal_ objects, I only want _Cat_ and _Dog_ objects. We call this an abstract class. see the following example and note the keyword _abstract_.
+Often we want the parent class to simply be a template for creating other classes. E.g. in my application I don’t want any `Animal` objects, I only want `Cat` and `Dog` objects. We call this an abstract class. see the following example and note the keyword `abstract`.
 
 ```php
 abstract class Animal {
@@ -110,10 +113,11 @@ abstract class Animal {
     function __construct($name){
          $this->name=$name;
     }
-    public function sleep(){
+    public function sleep():string
+    {
         return "{$this->name} is sleeping.";
     }
-    abstract public function talk();
+    abstract public function talk():string;
 }
 
 ```
@@ -126,20 +130,20 @@ $myAnimal = new Animal("Dave"); //Cannot instantiate abstract class
 
 ## Abstract methods
 
-The Abstract Animal class features an abstract method (_talk()_). Abstract methods have names but no body i.e. no code inside the function. An abstract method is like a rule:
+The Abstract Animal class features an abstract method (`talk()`). Abstract methods have names but no body i.e. no code inside the function. An abstract method is like a rule:
 
-- In this case it says all child classes must have a _talk()_ method (it will be up to the child class to define this for itself).
+- In this case it says all child classes must have a `talk()` method (it will be up to the child class to define this for itself).
 - But it must have one or we will get an error!
 
-Both _Cat_ and _Dog_ have to implement a _talk()_ method because they inherit from Animal.
+Both `Cat` and `Dog` have to implement a `talk()` method because they inherit from Animal.
 
 ```php
 class Dog extends Animal{
-    public function fetch($item)
+    public function fetch(string $item):string
     {
         return "{$this->name} has picked up the {$item}";
     }
-    public function talk() //we have to implement a talk method
+    public function talk():string //we have to implement a talk method
     {
         return "{$this->name} says woof";
     }
@@ -149,11 +153,11 @@ class Dog extends Animal{
 
 ```php
 class Cat extends Animal {
-    public function scratch()
+    public function scratch():string
     {
         return "{$this->name} scratched";
     }
-    public function talk() //we have to implement a talk method
+    public function talk():string //we have to implement a talk method
     {
         return "{$this->name} says meow";
     }
@@ -175,8 +179,8 @@ echo "<p>{$myDog->talk()}</p>"; // Fido says woof
 ### Polymorphism
 
 - Using Abstract classes and methods we get polymorphism.
-- Polymorphism allows objects of different types to respond to method calls of the same name (in this case _talk()_).
-- This idea may not seem very important but it makes our code flexible. We can add new types of Animal (e.g. a Snake) and the code will still work. If Snake is an Animal I know it will have to implement a talk() method.
+- Polymorphism allows objects of different types to respond to method calls of the same name (in this case `talk()`).
+- This idea may not seem very important but it makes our code flexible. We can add new types of Animal (e.g. a snake) and the code will still work. If `Snake` is an `Animal` I know it will have to implement a `talk()` method.
 
 ```php
 $animals = [];
@@ -198,44 +202,55 @@ foreach($animals as $animal)
 
 A related idea is interfaces.
 An interface specifies one or more methods that other classes must implement.
-An interface can't specify the body of a method i.e. code that is part of the function.
+An interface **can't** specify the body of a method i.e. code that is part of the function.
 
 Here's an example:
 
 ```php
 //this is a simple interface that specifies a single method
 interface CanBeStroked{
-    public function stroke();
+    public function stroke():string;
 }
 
 class Dog extends Animal implements CanBeStroked{
-    function fetch($item)
+    function fetch($item):string
     {
         return "{$this->name} has picked up the {$item}.";
     }
-    public function talk()
+    public function talk():string
     {
         return "{$this->name} says woof";
     }
-    public function stroke() //the Dog class implements CanBeStroked so has to feature a stroke() method
+    public function stroke():string //the Dog class implements CanBeStroked so has to feature a stroke() method
     {
         return "{$this->name} is wagging his tail.";
+    }
+}
+
+class Snake extends Animal{
+    public function slither():string
+    {
+        return "{$this->name} is slithering";
+    }
+    public function talk():string
+    {
+        return "{$this->name} says hiss";
     }
 }
 
 
 ```
 
-Dog implements _CanBeStroked_ so it has to feature a stroke method.
+`Dog` inherits from `Animal` and implements `CanBeStroked` so it has to feature a `talk()` method and a `stroke()` method. 
+
+`Snake` doesn't implement `CanBeStroked` so only has to feature a `talk()` method. 
 
 ### Interfaces vs Abstract classes
 
-- Interfaces and Abstract class serve similar purposes
-
-  - They both allow to use polymorphism i.e. specify methods that other classes must implement.
+Interfaces and Abstract class serve similar purposes
+- They both allow to use polymorphism i.e. specify methods that other classes must implement. 
 
 - Interfaces
-
   - Only specify methods not properties
   - Only specify the method signature (name and parameters) not the function body
   - Classes can implement multiple interfaces
@@ -244,3 +259,5 @@ Dog implements _CanBeStroked_ so it has to feature a stroke method.
   - Specify methods and properties
   - Can specify abstract and/or non-abstract methods
   - Classes can only inherit from a single abstract class
+
+One way to think of the difference is interfaces describe capability; abstract classes describe identity.
