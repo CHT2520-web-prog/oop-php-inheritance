@@ -51,8 +51,9 @@ Do the same for the _store.php_, _show.php_ and _edit.php_ pages. See how we are
 
 ### Test your understanding
 - All the CRUD actions should work apart from update and delete. Add code in _update.php_ and _destroy.php_ that will use the `FilmController` instance to update/delete the selected film from the database. 
-- If you can get this to work, one design improvement would be to improve the `FilmRepository` class. At the moment we can argue it is trying to do too much, manging the database connection and running queries.
-- Create a separate `Database` class that creates and stores a PDO connection. In our code we could then do something like:-
+- If you can get this to work, one design improvement would be to improve the `FilmRepository` class. At the moment we can argue it is trying to do too much, managing the database connection and running queries.
+- Create a separate `Database` class that creates and stores a PDO connection. 
+- In our code we could then do something like the following where we pass the PDO connection object into `$filmRepository` instead of the `FilmRepository` class having to create its own connection. 
 
 ```php
 require 'Database.php';
@@ -67,6 +68,6 @@ $filmRepository = new FilmRepository($conn);
 $filmController = new FilmController($filmRepository);
 $filmController->index();
 ```
-- We pass the PDO connection object into `$filmRepository` instead of the `FilmRepository` class having to create its own connection. 
+
 
 
