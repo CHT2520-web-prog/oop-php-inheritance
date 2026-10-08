@@ -48,24 +48,12 @@ class FilmController extends BaseController
 	}
 	function update():void
 	{
-		//get the data from the form
-		$film = new Film();
-		$film->id = $_POST['id'];
-		$film->title = $_POST['title'];
-		$film->year = $_POST['year'];
-		$film->duration = $_POST['duration'];
-		//Ask the repository to save the new film
-		$this->filmRepository->save($film );
-		//Redirect the user to the home page
-		header('Location: index.php');
+		//Add your code in here
 	}
 
 	function destroy():void
 	{
-		$id = $_POST['id'];
-		$this->filmRepository->delete($id);
-		//Redirect the user to the home page
-		header('Location: index.php');
+		//Add your code in here
 	}
 
 	function about()

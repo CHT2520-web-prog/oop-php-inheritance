@@ -50,7 +50,9 @@ Have a good look at _index.php_. There are key differences from the example we l
 Do the same for the _store.php_, _show.php_ and _edit.php_ pages. See how we are simply calling methods on a `FilmController` object to execute each task. 
 
 ### Test your understanding
-- All the CRUD actions should work apart from update and delete. Add code in _update.php_ and _destroy.php_ that will use the `FilmController` instance to update/delete the selected film from the database. 
+- All the CRUD actions should work apart from update and delete. Add code inside the `FilmController` that will perform the delete/update action.
+  - Have a go at deleting first. 
+  - Look at our previous CRUD examples to try and workout what code we need to run. 
 - If you can get this to work, one design improvement would be to improve the `FilmRepository` class. At the moment we can argue it is trying to do too much, managing the database connection and running queries.
 - Create a separate `Database` class that creates and stores a PDO connection. 
 - In our code we could then do something like the following where we pass the PDO connection object into `$filmRepository` instead of the `FilmRepository` class having to create its own connection. 
