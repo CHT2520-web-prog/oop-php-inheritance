@@ -42,7 +42,7 @@ This is a partially complete version of the same CRUD app we worked on earlier w
 
 Have a good look at _index.php_. There are key differences from the example we looked at earlier this week.
 - This page doesn't do any work at all, instead it simply creates some objects (`$filmRepository` and `$filmController`) and calls the `index()` method of the film controller. 
-- Have a good look at `FilmController`. See how it:
+- Have a good look at the `index()` method in `FilmController`. See how it:
   - Calls the `all()` method on `$filmRepository` to get the list of films.
   - Loads the HTML page to display the list of films (`$this->loadView("index", ["films" => $films]);`)
     - This class inherits from a parent `Controller` class. Have a look inside the parent `BaseController` class to see how the view files are loaded. 
