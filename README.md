@@ -45,7 +45,7 @@ Have a good look at _index.php_. There are key differences from the example we l
 - Have a good look at the `index()` method in `FilmController`. See how it:
   - Calls the `all()` method on `$filmRepository` to get the list of films.
   - Loads the HTML page to display the list of films (`$this->loadView("index", ["films" => $films]);`)
-    - This class inherits from a parent `Controller` class. Have a look inside the parent `BaseController` class to see how the view files are loaded. 
+    - This class inherits from a parent `BaseController` class. Have a look inside the parent `BaseController` class to see how the view files are loaded. 
 
 Do the same for the _store.php_, _show.php_ and _edit.php_ pages. See how we are simply calling methods on a `FilmController` object to execute each task. 
 
