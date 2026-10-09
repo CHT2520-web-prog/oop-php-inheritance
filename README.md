@@ -38,7 +38,7 @@ Now we'll look at an example where we apply OOP in building web applications.
 - In the browser open _index.php_ (or simply remove _/inheritance.php_ from the end of the URL).
 - A list of films should be displayed. 
 
-This is a partially complete version of the same CRUD app we worked on earlier week, but it uses inheritance OOP to help structure the code. 
+This is a partially complete version of the same CRUD app we worked on earlier week, but it uses inheritance to help structure the code. 
 
 Have a good look at _index.php_. There are key differences from the example we looked at earlier this week.
 - This page doesn't do any work at all, instead it simply creates some objects (`$filmRepository` and `$filmController`) and calls the `index()` method of the film controller. 
