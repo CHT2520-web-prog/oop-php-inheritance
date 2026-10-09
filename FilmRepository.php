@@ -30,11 +30,21 @@ class FilmRepository {
         return $stmt->execute();
     }
 
-    public function update(Film $film): bool {
-        // Add your code in here
+    public function update(Film $film): bool
+    {
+        $query = "UPDATE films SET title=:title, year=:year, duration=:duration WHERE id=:id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(':id', $film->id);
+        $stmt->bindValue(':title', $film->title);
+        $stmt->bindValue(':year', $film->year);
+        $stmt->bindValue(':duration', $film->duration);
+        return $stmt->execute();
     }
 
-    public function delete(int $id): bool {
-        // Add your code in here
+    public function delete(int $id): bool
+    {
+        $stmt = $this->conn->prepare("DELETE FROM films WHERE films.id = :id");
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
     }
 }
