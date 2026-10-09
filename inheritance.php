@@ -103,9 +103,9 @@ echo "<p>{$builder->work()}</p>"; //Jane Smith has built the walls.
 4. Instead of working with these objects directly, we'll use the ProjectManager class. Uncomment the following lines of code that create an instance of ProjectManager and calls the buildHouse() and payContractors() methods. Check this works.
 */
 
-$projectManager = new ProjectManager($builder, $joiner);
-$projectManager->buildHouse();
-$projectManager->payContractors();
+//$projectManager = new ProjectManager($builder, $joiner);
+//$projectManager->buildHouse();
+//$projectManager->payContractors();
 
 /*
 5. How can you modify ProjectManager so we also pass in an Electrician object to the constructor function?
