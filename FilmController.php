@@ -55,7 +55,7 @@ class FilmController extends BaseController
 		$film->year = $_POST['year'];
 		$film->duration = $_POST['duration'];
 		//Ask the repository to save the new film
-		$this->filmRepository->save($film );
+		$this->filmRepository->update($film );
 		//Redirect the user to the home page
 		header('Location: index.php');
 	}
